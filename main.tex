@@ -1,22 +1,17 @@
 \documentclass[11pt,a4paper]{article}
 
 \usepackage{siunitx}
-%\usepackage[version=4]{mhchem}
 \usepackage{multirow}
 \usepackage{subfig}
 
 \usepackage{pgfgantt}
 \usepackage{pgfgantt-custom}
-%\usepackage{pdflscape}
-% \usepackage[a4paper,margin=1in,landscape]{geometry}
 
-% \usepackage[pdftex]{color,graphicx}
-% \pagestyle{plain}
 \usepackage{geometry}
 \usepackage{rotating}
 \usepackage{hyperref}
 
-%\input{double_space.tex}
+\input{double_space.tex}
 
 \newcommand{\ts}{\textsuperscript}
 \newcommand{\ic}{\texttt}
@@ -37,12 +32,12 @@
 \begin{document}
 
 %\newgeometry{margin=2.0cm}
-\newgeometry{margin=1.7cm, top=1.7cm, bottom=1.9cm}
+\newgeometry{margin=1.5cm, top=1.6cm, bottom=1.8cm}
 
 \begin{center}
     \Large{\textbf{Monitoring Committee Report VI}}\\[0.1cm]
     \large{Mark Muetzelfeldt}\\
-    \normalsize{11am on Thursday 14\ts{th} June 2018 in 2U13}\\[0.1cm]		
+    \normalsize{11am on Thursday 14\ts{th} June, 2018 in 2U13}\\[0.1cm]		
     \rule{\textwidth}{0.2mm}
     \textbf{Project: }Representation of cloud field organization in a stochastic convective parametrization scheme\\
     \textbf{Monitoring Committee: }Dr Omduth Coceal and  Dr Andrew Turner\\
@@ -55,18 +50,19 @@
 \label{sec:Project Overview}
 % Where have I been, where am I and where am I going.
 
-My PhD involves modifying a Convective Parametrization Scheme (CPS) in a General Circulation Model (GCM) so that it takes into account some of the effects of shear in a given grid-column. To do this, I will be classifying the shear profiles into Representative Wind Profiles (RWPs). I will then run high-resolution experiments with these RWPs as driving wind profiles, and look at certain key aspects of the cloud field such as mean cloud lifetime and bulk entrainment rate. The information derived from the high-resolution experiments, combined with a diagnosis of which RWP each grid-column fits into best, can then be used to modify the CPS under certain shear conditions. In some sense then, the organization stimulated by different dynamical conditions, i.e. the shear profile, is being represented in the CPS. It is hoped that running the GCM with a modified CPS will have beneficial effects over regions where the organization of convection in the tropics is prevalent, e.g. over oceanic regions such as the Atlantic and West Pacific and over continental regions such as the Amazon and Sahel.
+My PhD involves modifying a Convective Parametrization Scheme (CPS) in a General Circulation Model (GCM) so that it takes into account some of the effects of shear in a given grid-column. To do this, I will be classifying the shear profiles into Representative Wind Profiles (RWPs). I will then run high-resolution experiments with these RWPs as driving wind profiles, and look at certain key aspects of the cloud field such as mean cloud lifetime and bulk entrainment rate. The information derived from the high-resolution experiments, combined with a diagnosis of which RWP each grid-column fits into best, can then be used to modify the CPS under certain shear conditions. In some sense then, the organization stimulated by different dynamical conditions is being represented in the CPS. It is hoped that running the GCM with a modified CPS will have beneficial effects over regions where the organization of convection in the tropics is prevalent, e.g. over oceanic regions such as the Atlantic and West Pacific and over continental regions such as the Amazon and Sahel.
 
 In MC V, one of the outstanding questions posed was `How to generate Representative Wind Profiles (RWPs)?'. I have addressed this question in the last six months to my satisfaction and am close to finalizing this stage of the analysis. This has involved running a K-means clustering algorithm to cluster wind profiles that are alike together. However, it is necessary to perform a number of steps before the profiles can be clustered. These steps are detailed in section \ref{sec:Classification of shear profiles}.
 
-With the RWPs generated, the next step is to run high-resolution experiments with each RWP driving a Radiative-Convective Equilibrium (RCE) experiment. On starting this in March, it quickly became apparent that the simulations were developing domain-scale oscillations (DSOs). I had seen these previously (see MC IV section 2.5.1), but at the time attributed these to either using an excessively high prescribed cooling of \SI{2}{K.day^{-1}}, or to the initial $\theta$ or water vapour profiles that were used. However, I have since run experiments with low cooling rates and the initial profiles taken either from the long-term spin up of coarse simulations or as provided from the Met Office, and have observed DSOs forming. This has been a significant and hard-to-foresee setback, more detail is provided in sections \ref{sec:dso}, and it has had an effect on my expected finishing date (section \ref{sec:extension}).
+With the RWPs generated, the next step is to run high-resolution experiments with each RWP driving a Radiative-Convective Equilibrium (RCE) experiment. On starting this in March, it quickly became apparent that the simulations were developing domain-scale oscillations (DSOs). I had seen these previously (see MC IV section 2.5.1), but at the time attributed these to either using an excessively high prescribed cooling of \SI{2}{K.day^{-1}}, or to the initial $\theta$ or water vapour profiles that were used. However, I have since run experiments with low cooling rates and the initial profiles taken either from the long-term spin up of coarse simulations or as provided from the Met Office, and have observed DSOs forming. This has been a significant and hard-to-foresee setback, more detail is provided in sections \ref{sec:dso}.
+%, and it has had an effect on my expected finishing date (section \ref{sec:extension}).
 
-An outstanding question for my PhD is: how to modify the CPS in light of the information from high-resolution experiments? This will involve incorporating what I have found from how cloud fields organize themselves under different shear conditions in a way that works with the CPS in use. For the Gregory-Rowntree scheme in use in the UM currently \parencite{gregory1990mass}, this could take the form of modifying the entrainment rate, based on the diagnosis of the bulk entrainment rate under different shear conditions in the high-resolution experiments. For the Plant-Craig scheme \parencite{plant2008stochastic}, this could additionally involve changing the cloud lifetime parameter based on the cloud tracking results from the high-resolution experiments. With the modifications to the CPS in place, I will be in a position to perform the idealized and global parametrized experiments tasks in my schedule (see Appendix, Fig. A.1).
+An outstanding question for my PhD is: how to modify the CPS in light of the information from high-resolution experiments? This will involve incorporating what I have found from how cloud fields organize themselves under different shear conditions in a way that works with the CPS in use. For the Gregory-Rowntree scheme in use in the UM currently \parencite{gregory1990mass}, this could take the form of modifying the entrainment rate, based on the diagnosis of the bulk entrainment rate under different shear conditions in the high-resolution experiments. For the Plant-Craig scheme \parencite{plant2008stochastic}, this could additionally involve changing the cloud lifetime parameter based on the cloud tracking results from the high-resolution experiments. With the modifications to the CPS in place, I will be in a position to perform the idealized and global parametrized experiments tasks in my schedule (see Appendix, Fig. \ref{fig:gantt}).
 
 \subsection{Background reading}
 \label{sec:Background reading}
 
-In preparation for writing up my work on the climatology of shear profiles in GCMs, I have been reading widely about shear and its effects on organization of convection. Fulfilling my MC V action, I have read about observations of organization, mainly in the form of Mesoscale Convective Systems (MCSs) and squall lines, and the shear profiles that cause organization. \todo{words} These studies come from many regions across the globe, from the Atlantic in GATE (GARP (Global Atmospheric Research Program) Atlantic Tropical Experiment) \parencite{houze1977structure, zipser1977}, the Pacific in TOGA-COARE (Tropical Ocean Global Atmosphere - Coupled Atmosphere-Ocean Response Experiment) \todo{cite}, to continental Africa \todo{cite} and South America \todo{cite}. From these I have identified some hodographs that I can compare with those from my classification of shear work. 
+In preparation for writing up my work on the climatology of shear profiles in GCMs, I have been reading widely about shear and its effects on organization of convection. Fulfilling my MC V action, I have read about observations of organization, mainly in the form of Mesoscale Convective Systems (MCSs) and squall lines, and the shear profiles that cause organization. These studies come from many regions across the globe, from the Atlantic in GATE (GARP (Global Atmospheric Research Program) Atlantic Tropical Experiment) \parencite{houze1977structure, zipser1977mesoscale}, the Pacific in TOGA-COARE (Tropical Ocean Global Atmosphere - Coupled Atmosphere-Ocean Response Experiment) \parencite{jorgensen1997structure}, to continental Africa \parencite{peters1988structure} and South America \parencite{cohen1995environmental}. From these I have identified some hodographs that I can compare with those from my classification of shear work.
 
 \section{Completed work}
 \label{sec:Completed work}
@@ -74,7 +70,7 @@ In preparation for writing up my work on the climatology of shear profiles in GC
 \subsection{Progress overview}
 \label{sec:Progress overview}
 
-At MC V, my plan for the last six months was to follow the schedule set out in the Gantt Chart in that report. I have not managed to adhere to this, mainly because of the Domain Scale Oscillations described in section \ref{sec:dso}. When I came across these, it became a priority to work out what was the root cause of these as well as how we might be able to suppress them. There was also some slippage in the schedule before March due to the shear climatology work taking longer than I anticipated, as well as not appreciating how long it would take to organize \textit{Quo Vadis} (see section \ref{sec:Transferable skills}).
+At MC V, my plan for the last six months was to follow the schedule set out in the Gantt Chart in that report. I have not managed to adhere to this, mainly because of the DSOs described in section \ref{sec:dso}. When I came across DSOs, it became a priority to work out what was the root cause of these as well as how we might be able to suppress them. There was also some slippage in the schedule before March due to the shear climatology work taking longer than I anticipated, as well as not appreciating how long it would take to organize \textit{Quo Vadis} (see section \ref{sec:Transferable skills}).
 
 \subsection{Classification of shear profiles}
 \label{sec:Classification of shear profiles}
@@ -96,7 +92,7 @@ Principal Component Analysis (PCA) can be used to reduce the dimensionality of a
 
 \subsubsection{K-means clustering}
 
-K-means clustering can be used to cluster samples into a user-chosen number of clusters. The algorithm used here is Lloyd's algorithm, which is described in the Appendix, section A1. The clustered RWPs can be seen in Fig. \ref{fig:RWPs}. \todo{describe clusters}
+K-means clustering can be used to cluster samples into a user-chosen number of clusters. The algorithm used here is Lloyd's algorithm, which is described in the Appendix, section A1. The clustered RWPs can be seen in Fig. \ref{fig:RWPs}. The RWPs show some similarities with shear profiles and hodographs found in the literature (see section \ref{sec:Background reading}), this will be fully explored in my paper on shear classification in GCMs.
 
 \begin{figure}[h!]
     \centering
@@ -105,50 +101,50 @@ K-means clustering can be used to cluster samples into a user-chosen number of c
     \label{fig:RWPs}
 \end{figure}
 
-The geographical distribution of the RWPs is shown in Fig. \ref{fig:RWPs_geog_loc}. \todo{discuss geog. distributions}
+The geographical distribution of the RWPs is shown in Fig. \ref{fig:RWPs_geog_loc}. There are clear hotspots over certain regions: Africa, the Amazon, the West Pacific and off the east coast of Africa. These distributions will also be compared to climatologies of MCSs in my paper on shear classification.
 
-\subsection{High-resolution simulations}
-\label{sec:high-res sim}
-
-In March, when sufficient progress had been made on the RWPs, I started running some initial high-resolution (\SI{1}{km} resolution) simulations. The plan was to run a prolonged spin-up of \SI{20}{days} for each RWP at a lower resolution of \SI{2}{km}. The domain mean end state of this would be used as the initial state for a \SI{20}{day} experiment for each RWP, and existing analysis discussed in previous MCs would be performed on the output. However, through looking at e.g. animations of the precipitation field, it became obvious that Domain-Scale Oscillations (DSOs) were occurring again. Why they have reappeared is the subject of continuing work, and this phenomenon is discussed in the following section.
 
 \subsubsection{Domain-Scale Oscillations}
 \label{sec:dso}
 
+In March, when sufficient progress had been made on the RWPs, I started running some initial high-resolution (\SI{1}{km} resolution) simulations. However, it quickly became apparent that DSOs were occurring again. This sections describes DSOs, presents evidence for them, provides a brief explanation of why they might form, discusses some attempts at their mitigation and gives the model settings to which they are sensitive or not.
+
 % Description, results, explanation, mitigation
 The DSOs can be characterized as oscillations that are present in the largest scale available to them: the domain-scale. They manifest themselves as oscillations in all the atmospheric fields that have been examined so far, e.g. $u$, $v$, $w$, surface precipitation, and surface sensible and latent heat flux. They can either form as standing or propagating waves, depending on the setup of the experiment.
 
-They first became apparent when looking at animations of precipitation, where after one day there would be some regions of enhanced and suppressed precipitation travelling across the domain. Due to the biperiodic nature of the model setup, they are free to propagate indefinitely. In Fig. \ref{fig:hovmollers}, two Hovm{\"o}ller diagrams are shown, from which the structure and properties of the oscillations can be determined. The key model settings are given in the Appendix, section \todo{model settings}. The oscillation can be seen to form after approximately \SI{1}{day}, and shows oscillations in both the north-south and east-west directions. As time progresses, the oscillation in the east-west direction dies out, and the oscillation in the north-south direction becomes stronger. The phase speed of the oscillation is found to be \SI{13.47}{m.s^{-1}}. A single oscillation, that forms after around \SI{1}{day}, is extant for the rest of the duration of the experiment, traversing the domain approximately every \SI{5.3}{hours}.
+In Fig. \ref{fig:hovmollers}, two Hovm{\"o}ller diagrams are shown, from which the structure and properties of the oscillations can be determined. The oscillation can be seen to form after approximately \SI{1}{day}, and shows oscillations in both the north-south and east-west directions. As time progresses, the oscillation in the east-west direction dies out, and the oscillation in the north-south direction becomes stronger. The phase speed of the oscillation is found to be \SI{13.47}{m.s^{-1}}. A single oscillation, that forms after around \SI{1}{day}, is extant for the rest of the duration of the experiment, traversing the domain approximately every \SI{5.3}{hours}.
 
 \begin{figure}[hbt!]%
     \centering
     \subfloat[]{{\includegraphics[height=6cm]{figs/m500_large_dom_no_wind_hovmoller_x.png}}}%
     \qquad
     \subfloat[]{{\includegraphics[height=6cm]{figs/m500_large_dom_no_wind_hovmoller_y.png}}}%
-    \caption{\todo{}}%
+    \caption{Hovm{\"o}ller diagrams of precipitation averaged in the y-dir (a) and x-dir (b). Phase speed is marked on (b) with a red line. }%
     \label{fig:hovmollers}%
 \end{figure}
 
-Power spectra of the horizontal and vertical wind can be seen in Fig. \ref{fig:power_spectra}. In both, there is more energy in the largest scales in the y-dir (north-south), and less energy at the finest scales in the y-dir, although this is more pronounced in the vertical wind shown in subfigure (b). Both are seen to have similar gradients to a $k^{-5/3}$ line for a range of scales, indicating that there is an inertial subrange in the simulation where energy is cascading from larger length scales to smaller, as predicted by \todo{cite kolmogorov}.
+Power spectra of the horizontal and vertical wind can be seen in Fig. \ref{fig:power_spectra}. In both, there is more energy in the largest scales in the y-dir (north-south), and less energy at the finest scales in the y-dir, although this is more pronounced in the vertical wind shown in subfigure (b). Both are seen to have similar gradients to a $k^{-5/3}$ line for a range of scales, indicating that there is an inertial subrange in the simulation where energy is cascading from larger length scales to smaller.
 
 \begin{figure}[htb!]%
     \centering
     \subfloat[]{{\includegraphics[width=8cm]{figs/m500_1567m_uv_mean_pow_spectrum.png}}}%
     \qquad
     \subfloat[]{{\includegraphics[width=8cm]{figs/m500_1477m_mean_pow_spectrum.png}}}%
-    \caption{\todo{}}%
+    \caption{Power spectra in horizontal wind (a) and vertical wind (b) for a \SI{500}{m} resolution simulation, at around \SI{1477}{m} (a) and \SI{1567}{m} (b) height, averaged over 24 hourly snapshots from day 4 of the simulation. Spectra in the x-dir (blue), y-dir(red) and radially averaged (green) are shown in both subfigures. A dashed $k^{-5/3}$ line is shown in both for comparison with spectra. Scale on x-axis is in units of \SI{}{L^{-1}}, where $L$ is the domain length of \SI{256}{km}. Hence $10^0$ is the domain scale, and a value of 256 on x-axis corresponds to $2 \Delta x$ or \SI{1}{km}}%
     \label{fig:power_spectra}%
 \end{figure}
 
-We hypothesize that DSOs are convectively coupled gravity waves on the tropopause. Their phase speed is close to that of gravity waves of this type \todo{cite}. The peaks in the $w$ field are where convection is active, and convection is suppressed in the troughs. 
+We hypothesize that DSOs are convectively coupled gravity waves on the tropopause. Their phase speed is close to that of gravity waves of this type, in \cite{gill1982atmosphere} a speed of \SI{12}{m.s^{-1}} is quoted. The peaks in the $w$ field are where convection is active, and convection is suppressed in the troughs. 
 
-The oscillations in one sense represent a physically meaningful response to the experimental setup. In a situation where there is upscale transport of energy, it must build up on the largest scale available to it, i.e. the domain-scale. However, the largest scale is determined by how we chose to setup the experiment. It is therefore not a physically meaningful scale, \todo{add more to this} and so suppression of these oscillations is desirable. To do this, I have tried implementing two forms of damping: $w$ damping and $n = 1$ damping. $w$ damping consists of a Rayleigh damping term of the $w$ field at each height level in the model, with a characteristic timescale that is user settable. $n = 1$ damping involves using Fourier analysis to work out the projection of the $w$ field onto a domain-scale sinusoidal wave, and using this to damp the $w$ field. So far, $w$ damping has not had much effect, using either a \SI{6}{hour} or \SI{1}{hour} damping timescale. The $n = 1$ damping is still in the process of being implemented.
+The oscillations in one sense represent a physically meaningful response to the experimental setup. In a situation where there is upscale transport of energy, it must build up on the largest scale available to it, i.e. the domain-scale. However, the largest scale is determined by how we chose to setup the experiment. It is therefore not a physically meaningful scale, and so suppression of these oscillations is desirable. To do this, I have tried implementing two forms of damping: $w$ damping and $n = 1$ damping. $w$ damping consists of a Rayleigh damping term of the $w$ field at each height level in the model, with a characteristic timescale that is user settable. $n = 1$ damping involves using Fourier analysis to work out the projection of the $w$ field onto a domain-scale sinusoidal wave, and using this to damp the $w$ field. So far, $w$ damping has not had much effect, using either a \SI{6}{hour} or \SI{1}{hour} damping timescale. The $n = 1$ damping is still in the process of being implemented.
 
 The DSOs have been found to be sensitive to some model settings, and not to others. They occur with a horizontal resolution of \SI{1}{km} or finer, but not with a resolution of \SI{2}{km}. They occur on a domain of size \dom{256}, but not on a domain of \dom{128} or smaller. They are not sensitive to the applied wind, the gravity wave sponge layer strength or depth, the forcing (between \SIrange{1.5}{2}{K.day^{-1}}), or whether geostrophic forcing or a Coriolis force is applied.
 
 \subsection{Paper review}
 
-I was asked to review a paper: ``Convective organization in ICON large-eddy simulations'' for QJRMS. This paper looked at the question of how to define an index of organization for convective cloud fields, and used a wavelet based approach to define one. Their index, the Wavelet Organization Index (WOI), is based on the ratio of how much power there is at large and small scales, the total amount of power at all scales, and a measure of horizontal anisotropy of the cloud field. Reviewing it was a great chance for me to engage in the scientific process. I learnt about wavelets as a tool for analysis, and found some interesting papers whilst reviewing the references, such as \todo{ref} \cite{weniger2017} and \cite{wong2016}. My recommendation was for ``Major revision with reconsideration'' as in my opinion there were too many unanswered questions in the paper and there were far too many typographical errors.
+I was asked to review a paper: ``Convective organization in ICON large-eddy simulations'' for QJRMS. This paper looked at the question of how to define an index of organization for convective cloud fields, and used a wavelet based approach to define one. Their index, the Wavelet Organization Index (WOI), is based on the ratio of how much power there is at large and small scales, the total amount of power at all scales, and a measure of horizontal anisotropy of the cloud field. 
+% Reviewing it was a great chance for me to engage in the scientific process. I learnt about wavelets as a tool for analysis, and found some interesting papers whilst reviewing the references, such as \cite{weniger2017spatial} and \cite{wong2016spectral}. 
+My recommendation was for ``Major revision with reconsideration'' as in my opinion there were too many unanswered questions and there were far too many typographical errors.
 
 \section{Future work}
 \label{sec:Future work}
@@ -156,34 +152,35 @@ I was asked to review a paper: ``Convective organization in ICON large-eddy simu
 \subsection{Shear classification and climatology in the UM}
 \label{sec:Shear climatology in the UM}
 
-Finishing off the shear classification work in June will be a priority. It will be good to have a completed piece of work that will then be suitable for writing up as a paper and as a thesis chapter. The work is almost complete, although I would like to add one extra piece of analysis: examining the seasonal dependence of the shear profiles. With this work done, and having read the majority of the supporting literature for the paper, I will then be in a good position to write the paper describing this technique after my paternity leave. It will also provide the RWPs for my high-resolution experiments.
+Finishing off the shear classification work in June will be a priority. The work is almost complete, although I would like to add one extra piece of analysis: examining the seasonal dependence of the shear profiles. With this work done, and having read the majority of the supporting literature for the paper, I will then be in a good position to write the paper describing this technique after my paternity leave. It will also provide the RWPs for my high-resolution experiments.
 
 \subsubsection{Domain-Scale Oscillations}
 \label{sec:dso_future}
-I am mindful that I have spent a lot of time working on the DSOs. The high-resolution modelling is an integral part of my PhD, and sorting out this issue provides the best route to performing these experiments. However, I cannot work on this indefinitely, and if I cannot make progress soon I will have to fall back on a contingency plan. My proposal is that I carry on with the $n = 1$ damping, combined with perhaps extending this and the $w$ damping to all wind fields. If I have not managed to suppress the DSOs by the end of August, I will fall back on my contingency plan. This will involve either running \SI{2}{km} experiments, or running on a smaller domain where DSOs are not so readily created (see the end of section \ref{sec:dso}), or a combination of the two. Each of these has drawbacks. Running at a coarser resolution will not resolve the convection as well as I would like, ideally I would be running at \SI{500}{m} or higher, although many previous studies have been done with \SI{2}{km} resolution, e.g. \cite{tompkins2017organization}. Running on a smaller domain will make simulating organized features such as squall lines, which can have lengths of over \SI{100}{km}, more difficult.
+I am mindful that I have spent a lot of time working on the DSOs. The high-resolution modelling is an integral part of my PhD, and sorting out this issue provides the best route to performing these experiments. However, I cannot work on this indefinitely, and if I cannot make progress soon I will have to fall back on a contingency plan. My proposal is that I carry on with the $n = 1$ damping, combined with perhaps extending this and the $w$ damping to all wind fields. If I have not managed to suppress the DSOs by the end of August, I will fall back on my contingency plan. This will involve either running \SI{2}{km} experiments, or running on a smaller domain where DSOs are not so readily created, or a combination of the two. Each of these has drawbacks. Running at a coarser resolution will not resolve the convection as well as I would like, ideally I would be running at \SI{500}{m} or higher, although many previous studies have been done with \SI{2}{km} resolution, e.g. \cite{tompkins2017organization}. Running on a smaller domain will make simulating organized features such as squall lines, which can have lengths of over \SI{100}{km}, more difficult.
 
 \subsection{High-resolution idealized modelling}
 \label{sec:High-resolution idealized modelling}
 
-Once the RWPs have been generated, and having made a decision about how best to deal with the DSOs, I will be in a position to perform the high-resolution experiments. This will involve running an experiment for each of the RWPs, and running experiments for linearly scaled shear profiles, as was done for the companion paper in MC IV, using an otherwise identical model setup. The analysis from the MC IV companion paper will then be run, supplemented by the cloud tracking work described in MC V.
+Once the RWPs have been generated, and having made a decision about how best to deal with the DSOs, I will be in a position to perform the high-resolution experiments. This will involve running an experiment for each of the RWPs, and running experiments for linearly scaled shear profiles, as was done for the companion paper to MC IV, using an otherwise identical model setup. The analysis from the MC IV companion paper will then be run, supplemented by the cloud tracking work described in MC V.
 
 \subsection{Parametrized simulations}
 \label{sec:Parametrized simulations}
 
-Once the high-resolution experiments have been run, I can start making changes to the convection scheme in the UM. I have done work on the technical aspects of this, however implementing the changes will require a degree of experimentation. Running idealized consists of making modifications to the CPS and running an idealized RCE experiment that is equivalent to the high-resolution RCE experiments to verify that the changes I have made are producing the correct results compared to the high-resolution `truth'. The global experiments involve running a setup similar to GA7.0 but with a modified CPS, and investigating the changes the behaviour of the GCM with respect to a control run.
+Once the high-resolution experiments have been run, I can start making changes to the convection scheme in the UM. I have done work on the technical aspects of this, however implementing the changes will require a degree of experimentation. Running idealized parametrized experiments consists of making modifications to the CPS and running an idealized RCE experiment that is equivalent to the high-resolution RCE experiments. This can be used to verify that the changes I have made are producing the correct results compared to the high-resolution `truth'. The global experiments involve running a setup similar to GA7.0 but with a modified CPS, and investigating the changes the behaviour of the GCM with respect to a control run.
 
-There is a combined total of \SI{6}{months} in my schedule for the idealized and global parametrized tasks.  However, there is scope for some flexibility in how long I spend on each, and indeed the nature of the idealized experiments. Jian-Feng Gu (one of Robert Plant's post-doctoral researchers) has run idealized parametrized simulations, so I will be liaising with him to find out how he has progressed with these. There is the possibility of changing the idealized experiments to Single Column Model experiments as well, should the coupling between the CPS and the dynamics in the idealized experiments prove troublesome. I would like to discuss this in MC VII, as hopefully I will have had time to do some initial experimentation into the idealized parametrized runs by then.
+There is a combined total of \SI{6}{months} in my schedule for the idealized and global parametrized tasks.  However, there is scope for some flexibility in how long I spend on each, and there is also some flexibility as to the nature of the idealized experiments. Jian-Feng Gu (one of Robert Plant's post-doctoral researchers) has run idealized parametrized simulations, so I will be liaising with him to find out how he has progressed with these. There is the possibility of changing the idealized experiments to single column model experiments as well, should the coupling between the CPS and the dynamics in the idealized experiments prove troublesome. I would like to discuss this in MC VII, as hopefully I will have had time to do some initial experimentation into the idealized parametrized runs by then.
 
 \subsection{Writing}
 \label{sec:Writing}
 
-I have \SI{10}{months} of thesis writing in my schedule. This overlaps with the  parametrized simulations, and my plan is to be writing up chapters as I am doing this work. My writing during this time will be lower intensity, increasing as I complete the work. There is also some time at the end to write up a paper of the high-resolution experiments. There will of course be significant overlap between both papers I am planning on writing and thesis chapters.
+I have \SI{10}{months} of thesis writing in my schedule. This overlaps with the parametrized simulations, and my plan is to be writing up chapters as I am doing this work. My writing during this time will be lower intensity, increasing as I complete the work. There is also some time at the end to write up a paper of the high-resolution experiments. 
+% There will of course be significant overlap between both papers I am planning on writing and thesis chapters.
 
 \section{Extension to funding}
 \label{sec:extension}
 
 The unforeseen nature of the DSOs, combined with the fact that I had significant difficulties with moisture conservation in the idealized UM when I started using it, means I will be asking for more than the \SI{3.5}{years} that it would be expected to take for someone who did six assessed modules. 
-I now expect to finish by the 1\ts{st} of September, 2019, which is five months after the finished date I put forward in MC V. Bearing in mind that this also includes a month of paternity leave (2 weeks statutory and 2 weeks annual holiday), and the extra time spent diagnosing and mitigating the DSO issue I think this represents a realistic and achievable plan for the remainder of my PhD. It also includes an extra month for writing a paper at the end of my PhD, I have checked with Clare Watt that budgeting for this is acceptable.
+I now expect to finish by the 1\ts{st} of September, 2019, which is five months after the finished date I put forward in MC V. Bearing in mind that this also includes a month of paternity leave (2 weeks statutory and 2 weeks annual holiday), and the extra time spent diagnosing and mitigating the DSO issue, I think this represents a realistic and achievable plan for the remainder of my PhD. It also includes an extra month for writing a paper at the end of my PhD; I have checked with Clare Watt that budgeting for this is acceptable.
 
 \section{Training record}
 \label{sec:Training record}
@@ -199,9 +196,9 @@ I presented my work on clustering of wind profiles in a talk in Mesoscale Group,
 
 \subsubsection{EGU conference 2018}
 
-I attended the EGU conference in Vienna from the 9\ts{th} to the 13\ts{th} of April. This exposed me to the breadth and depth of research being carried out in atmospheric science and beyond. The session that was most directly relevant for me was on ``Atmospheric convection'', where I saw some interesting talks on self-aggregation and the organization of convection.
-
-I presented a poster on ``Clustering wind profiles to identify shear conditions in climate models'', which was a chance to showcase my research outside of the department and lead to a few useful conversations about how the analysis could be improved and expanded upon. The poster sessions also provided ample opportunity to get an in-depth run through of another scientist's work, and I had many fruitful talks with people and made some useful connections.
+I attended the EGU conference in Vienna from the 9\ts{th} to the 13\ts{th} of April. This exposed me to the breadth and depth of research being carried out in atmospheric science and beyond. 
+%The session that was most directly relevant for me was on ``Atmospheric convection'', where I saw some interesting talks on self-aggregation and the organization of convection.
+I presented a poster on ``Clustering wind profiles to identify shear conditions in climate models'', which was a chance to showcase my research outside of the department and led to a few useful conversations about how the analysis could expanded upon. The poster sessions also provided ample opportunity to get an in-depth run through of another scientist's work, and I had many fruitful talks with people and made some useful connections.
 
 \subsection{Transferable skills}
 \label{sec:Transferable skills}
@@ -232,6 +229,7 @@ As co-chair of the PGR forum, I have represented the PhD students to the departm
 
 If it is decided to split the samples into $N$ clusters, $N$ of the samples are chosen at random. These become the cluster centres. Every other sample is then put into a cluster, based on which of the cluster centres it is nearest to (in a Euclidean sense). The mean of each cluster can then be calculated, and these are set as the new cluster centres. This process is iterated, until there is a small change in the cluster centres' location (less than some small pre-defined threshold), when the algorithm terminates.
 
+\newpage
 \subsection*{Training record}
 \subsubsection*{Year 1}
 
