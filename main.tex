@@ -50,11 +50,11 @@
 \label{sec:Project Overview}
 % Where have I been, where am I and where am I going.
 
-My PhD involves modifying a Convective Parametrization Scheme (CPS) in a General Circulation Model (GCM) so that it takes into account some of the effects of shear in a given grid-column. To do this, I will be classifying the shear profiles into Representative Wind Profiles (RWPs). I will then run high-resolution experiments with these RWPs as driving wind profiles, and look at certain key aspects of the cloud field such as mean cloud lifetime and bulk entrainment rate. The information derived from the high-resolution experiments, combined with a diagnosis of which RWP each grid-column fits into best, can then be used to modify the CPS under certain shear conditions. In some sense then, the organization stimulated by different dynamical conditions is being represented in the CPS. It is hoped that running the GCM with a modified CPS will have beneficial effects over regions where the organization of convection in the tropics is prevalent, e.g. over oceanic regions such as the Atlantic and West Pacific and over continental regions such as the Amazon and Sahel.
+My PhD involves modifying a Convective Parametrization Scheme (CPS) in a General Circulation Model (GCM) so that it takes into account some of the effects of shear in a given grid-column. To do this, I will be classifying the shear profiles into Representative Wind Profiles (RWPs). I will then run high-resolution experiments with these RWPs as driving wind profiles, and look at certain key aspects of the cloud field such as mean cloud lifetime and bulk entrainment rate. The information derived from the high-resolution experiments, combined with a diagnosis of which RWP each grid-column fits into best, can then be used to modify the CPS under certain shear conditions. In some sense then, the organization stimulated by different dynamical conditions is being represented in the CPS. I will investigate whether running the GCM with a modified CPS has beneficial effects over regions where the organization of convection in the tropics is prevalent, e.g. over the Atlantic and West Pacific and over the Amazon and Sahel.
 
 In MC V, one of the outstanding questions posed was `How to generate Representative Wind Profiles (RWPs)?'. I have addressed this question in the last six months to my satisfaction and am close to finalizing this stage of the analysis. This has involved running a K-means clustering algorithm to cluster wind profiles that are alike together. However, it is necessary to perform a number of steps before the profiles can be clustered. These steps are detailed in section \ref{sec:Classification of shear profiles}.
 
-With the RWPs generated, the next step is to run high-resolution experiments with each RWP driving a Radiative-Convective Equilibrium (RCE) experiment. On starting this in March, it quickly became apparent that the simulations were developing domain-scale oscillations (DSOs). I had seen these previously (see MC IV section 2.5.1), but at the time attributed these to either using an excessively high prescribed cooling of \SI{2}{K.day^{-1}}, or to the initial $\theta$ or water vapour profiles that were used. However, I have since run experiments with low cooling rates and the initial profiles taken either from the long-term spin up of coarse simulations or as provided from the Met Office, and have observed DSOs forming. This has been a significant and hard-to-foresee setback, more detail is provided in sections \ref{sec:dso}.
+With the RWPs generated, the next step is to run high-resolution experiments with each RWP driving a Radiative-Convective Equilibrium (RCE) experiment. On starting this in March, it quickly became apparent that the simulations were developing domain-scale oscillations (DSOs). I had seen these previously (see MC IV section 2.5.1), but at the time attributed these to either using an excessively high prescribed cooling of \SI{8}{K.day^{-1}}, or to the initial $\theta$ or water vapour profiles that were used. However, I have since run experiments with low cooling rates and the initial profiles taken either from the long-term spin up of coarse simulations or as provided from the Met Office, and have observed DSOs forming. This has been a significant and hard-to-foresee setback, more detail is provided in section \ref{sec:dso}.
 %, and it has had an effect on my expected finishing date (section \ref{sec:extension}).
 
 An outstanding question for my PhD is: how to modify the CPS in light of the information from high-resolution experiments? This will involve incorporating what I have found from how cloud fields organize themselves under different shear conditions in a way that works with the CPS in use. For the Gregory-Rowntree scheme in use in the UM currently \parencite{gregory1990mass}, this could take the form of modifying the entrainment rate, based on the diagnosis of the bulk entrainment rate under different shear conditions in the high-resolution experiments. For the Plant-Craig scheme \parencite{plant2008stochastic}, this could additionally involve changing the cloud lifetime parameter based on the cloud tracking results from the high-resolution experiments. With the modifications to the CPS in place, I will be in a position to perform the idealized and global parametrized experiments tasks in my schedule (see Appendix, Fig. \ref{fig:gantt}).
@@ -70,9 +70,9 @@ In preparation for writing up my work on the climatology of shear profiles in GC
 \subsection{Progress overview}
 \label{sec:Progress overview}
 
-At MC V, my plan for the last six months was to follow the schedule set out in the Gantt Chart in that report. I have not managed to adhere to this, mainly because of the DSOs described in section \ref{sec:dso}. When I came across DSOs, it became a priority to work out what was the root cause of these as well as how we might be able to suppress them. There was also some slippage in the schedule before March due to the shear climatology work taking longer than I anticipated, as well as not appreciating how long it would take to organize \textit{Quo Vadis} (see section \ref{sec:Transferable skills}).
+At MC V, my plan for the following six months was to follow the schedule set out in the Gantt Chart in that report. I have not managed to adhere to this, mainly because of the DSOs described in section \ref{sec:dso}. When I came across DSOs, it became a priority to work out what was the root cause of these as well as how we might be able to suppress them. There was also some slippage in the schedule before March due to the shear climatology work taking longer than I anticipated, as well as not appreciating how long it would take to organize \textit{Quo Vadis} (see section \ref{sec:Transferable skills}).
 
-\subsection{Classification of shear profiles}
+\subsection{Shear profiles classification in the UM}
 \label{sec:Classification of shear profiles}
 Since the last MC, I have gone from having a proof of concept working on one month of GCM output, to having a full clustering procedure that works on five years of GCM output. The GCM is the UM vn10.9, running the GA7.0 Global Atmosphere science configuration \parencite{walters2018met}. It is run for five years, from September 1988 to August 1993. In the results presented here, profiles of $u$ and $v$ are output at a number of pressure levels: \SI{950}{}, \SI{900}{}, \SI{850}{}, \SI{800}{}, \SI{700}{}, \SI{600}{}, \SI{500}{hPa} \footnote{In the final version of the analysis, 20 pressure levels from \SIrange{1000}{50}{hPa} will be used, so that information from the higher troposphere is retained in case it is needed.}. The reason that that only the low-level to mid-level shear is considered is because we hypothesize that shear at these levels is primarily responsible for organizing the convection. Only profiles that occur in the tropics, as defined by 30\si{\degree}N to 30\si{\degree}S, are considered.
 
@@ -101,18 +101,18 @@ K-means clustering can be used to cluster samples into a user-chosen number of c
     \label{fig:RWPs}
 \end{figure}
 
-The geographical distribution of the RWPs is shown in Fig. \ref{fig:RWPs_geog_loc}. There are clear hotspots over certain regions: Africa, the Amazon, the West Pacific and off the east coast of Africa. These distributions will also be compared to climatologies of MCSs in my paper on shear classification.
+The geographical distribution of the RWPs is shown in the Appendix, in Fig. \ref{fig:RWPs_geog_loc}. There are clear hotspots over certain regions: Africa, the Amazon, the West Pacific and off the east coast of Africa. These distributions will also be compared to climatologies of MCSs in my paper on shear classification.
 
 
 \subsubsection{Domain-Scale Oscillations}
 \label{sec:dso}
 
-In March, when sufficient progress had been made on the RWPs, I started running some initial high-resolution (\SI{1}{km} resolution) simulations. However, it quickly became apparent that DSOs were occurring again. This sections describes DSOs, presents evidence for them, provides a brief explanation of why they might form, discusses some attempts at their mitigation and gives the model settings to which they are sensitive or not.
+In March, when sufficient progress had been made on the RWPs, I started running some initial high-resolution (\SI{1}{km} resolution) simulations. However, it quickly became apparent that DSOs were occurring again. This sections describes DSOs, presents evidence of their existence, provides a brief explanation of why they might form, discusses some attempts at their suppression and gives the model settings to which they are sensitive or not.
 
 % Description, results, explanation, mitigation
 The DSOs can be characterized as oscillations that are present in the largest scale available to them: the domain-scale. They manifest themselves as oscillations in all the atmospheric fields that have been examined so far, e.g. $u$, $v$, $w$, surface precipitation, and surface sensible and latent heat flux. They can either form as standing or propagating waves, depending on the setup of the experiment.
 
-In Fig. \ref{fig:hovmollers}, two Hovm{\"o}ller diagrams are shown, from which the structure and properties of the oscillations can be determined. The oscillation can be seen to form after approximately \SI{1}{day}, and shows oscillations in both the north-south and east-west directions. As time progresses, the oscillation in the east-west direction dies out, and the oscillation in the north-south direction becomes stronger. The phase speed of the oscillation is found to be \SI{13.47}{m.s^{-1}}. A single oscillation, that forms after around \SI{1}{day}, is extant for the rest of the duration of the experiment, traversing the domain approximately every \SI{5.3}{hours}.
+In Fig. \ref{fig:hovmollers}, two Hovm{\"o}ller diagrams are shown, from which the structure and properties of the oscillations can be determined. DSOs can be seen to form after approximately \SI{1}{day}, and show oscillations in both the east-west (a) and north-south (b) directions. As time progresses, the oscillation in the east-west direction dies out, and the oscillation in the north-south direction becomes stronger. The phase speed of the oscillation is found to be \SI{13.47}{m.s^{-1}}. A single oscillation, that forms after around \SI{1}{day}, is extant for the rest of the duration of the experiment, traversing the domain approximately every \SI{5.3}{hours}.
 
 \begin{figure}[hbt!]%
     \centering
@@ -149,10 +149,10 @@ My recommendation was for ``Major revision with reconsideration'' as in my opini
 \section{Future work}
 \label{sec:Future work}
 
-\subsection{Shear classification and climatology in the UM}
+\subsection{Shear profiles classification and climatology in the UM}
 \label{sec:Shear climatology in the UM}
 
-Finishing off the shear classification work in June will be a priority. The work is almost complete, although I would like to add one extra piece of analysis: examining the seasonal dependence of the shear profiles. With this work done, and having read the majority of the supporting literature for the paper, I will then be in a good position to write the paper describing this technique after my paternity leave. It will also provide the RWPs for my high-resolution experiments.
+Finishing off the shear classification work in June will be a priority. The work is almost complete, although I would like to add one extra piece of analysis: examining the seasonal dependence of the RWPs. With this work done, I will then be in a good position to write the paper describing this technique after my paternity leave. It will also provide the RWPs for my high-resolution experiments.
 
 \subsubsection{Domain-Scale Oscillations}
 \label{sec:dso_future}
@@ -166,9 +166,9 @@ Once the RWPs have been generated, and having made a decision about how best to 
 \subsection{Parametrized simulations}
 \label{sec:Parametrized simulations}
 
-Once the high-resolution experiments have been run, I can start making changes to the convection scheme in the UM. I have done work on the technical aspects of this, however implementing the changes will require a degree of experimentation. Running idealized parametrized experiments consists of making modifications to the CPS and running an idealized RCE experiment that is equivalent to the high-resolution RCE experiments. This can be used to verify that the changes I have made are producing the correct results compared to the high-resolution `truth'. The global experiments involve running a setup similar to GA7.0 but with a modified CPS, and investigating the changes the behaviour of the GCM with respect to a control run.
+Once the high-resolution experiments have been run, I can start making changes to the CPS in the UM. I have done work on the technical aspects of this, however implementing the changes will require a degree of experimentation. Running idealized parametrized experiments consists of making modifications to the CPS and running an idealized RCE experiment that is equivalent to the high-resolution RCE experiments. This can be used to verify that the changes I have made are producing the correct results compared to the high-resolution `truth'. The global experiments involve running a setup similar to GA7.0 but with a modified CPS, and investigating the changes to the behaviour of the GCM with respect to a control run.
 
-There is a combined total of \SI{6}{months} in my schedule for the idealized and global parametrized tasks.  However, there is scope for some flexibility in how long I spend on each, and there is also some flexibility as to the nature of the idealized experiments. Jian-Feng Gu (one of Robert Plant's post-doctoral researchers) has run idealized parametrized simulations, so I will be liaising with him to find out how he has progressed with these. There is the possibility of changing the idealized experiments to single column model experiments as well, should the coupling between the CPS and the dynamics in the idealized experiments prove troublesome. I would like to discuss this in MC VII, as hopefully I will have had time to do some initial experimentation into the idealized parametrized runs by then.
+There is a combined total of \SI{6}{months} in my schedule for the idealized and global parametrized tasks.  However, there is scope for some flexibility in how long I spend on each, and there is also some flexibility as to the nature of the idealized experiments. Jian-Feng Gu (one of Robert Plant's post-doctoral researchers) has run idealized parametrized simulations, so I will be liaising with him to find out how he has progressed with these. There is the possibility of changing the idealized experiments to single column model experiments as well, should the coupling between the CPS and the dynamics in the idealized experiments prove to be troublesome. I would like to discuss this in MC VII, as hopefully I will have had time to do some initial experimentation into the idealized parametrized runs by then.
 
 \subsection{Writing}
 \label{sec:Writing}
@@ -179,7 +179,7 @@ I have \SI{10}{months} of thesis writing in my schedule. This overlaps with the 
 \section{Extension to funding}
 \label{sec:extension}
 
-The unforeseen nature of the DSOs, combined with the fact that I had significant difficulties with moisture conservation in the idealized UM when I started using it, means I will be asking for more than the \SI{3.5}{years} that it would be expected to take for someone who did six assessed modules. 
+The unforeseen issue of the DSOs, combined with the fact that I had significant difficulties with moisture conservation in the idealized UM when I started using it, means that I will be asking for more than the \SI{3.5}{years} that it would be expected to take for someone who did six assessed modules. 
 I now expect to finish by the 1\ts{st} of September, 2019, which is five months after the finished date I put forward in MC V. Bearing in mind that this also includes a month of paternity leave (2 weeks statutory and 2 weeks annual holiday), and the extra time spent diagnosing and mitigating the DSO issue, I think this represents a realistic and achievable plan for the remainder of my PhD. It also includes an extra month for writing a paper at the end of my PhD; I have checked with Clare Watt that budgeting for this is acceptable.
 
 \section{Training record}
@@ -221,7 +221,7 @@ As co-chair of the PGR forum, I have represented the PhD students to the departm
 \begin{figure}[htp!]
     \centering
     \includegraphics[width=470px]{figs/{au197.pc_red.198809-199308.z4.ncPROFILES_GEOG_LOC_True_cape-shear_magrot_391137_-5_nclust-11_cropped}.png}
-    \caption{Hodograph of each RWP (left) and Heatmaps of the geographical distribution of each of the RWPs (right).}
+    \caption{Hodograph of each RWP (left) and Heatmaps of the geographical distribution of each of the RWPs (right). In the hodographs, 1 is the lowest pressure level (\SI{950}{hPa}), and 7 is the highest (\SI{500}{hPa})}
     \label{fig:RWPs_geog_loc}
 \end{figure}
 
@@ -283,7 +283,7 @@ If it is decided to split the samples into $N$ clusters, $N$ of the samples are 
   \item ParaCon plenary 3 in Cambridge (3-4/7/2017)
   \item The Future of Cumulus Parametrization, Delft University of Technology (10-14/7/2017)
   \item ParaCon plenary 4 in Exeter (18-19/12/2017)
-  \item EGU 2018: Vienna (8-13/4/2018)
+  \item EGU 2018 in Vienna (8-13/4/2018)
   \item (planned) ParaCon plenary 5 in Reading (27-28/6/2018)
 \end{itemize}
 
@@ -296,7 +296,7 @@ If it is decided to split the samples into $N$ clusters, $N$ of the samples are 
   \item Poster: ``Effects of Vertical Shear on Cloud Field Organization and Variability''. PhD Poster Session (21/9/2017)
   \item Poster: ``Clustering wind profiles to identify shear conditions in climate models''. Met Office Academic Partnership (MOAP), Met Office, Exeter (15/2/2018)
   \item Poster: ``Clustering wind profiles to identify shear conditions in climate models''. EGU Conference (9/4/2018)
-  \item (planned) Presentation: ``Domain Scale Oscillations in high-resolution idealized RCE simulations''. ParaCon plenary Reading (27-28/6/2018)
+  \item (planned) Presentation: ``Domain Scale Oscillations in the idealized UM''. ParaCon plenary Reading (27-28/6/2018)
 \end{itemize}
 
 \end{document}
